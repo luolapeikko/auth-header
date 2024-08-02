@@ -1,10 +1,10 @@
-import {AuthHeaderCredentials, isAuthHeaderCredentials} from './AuthHeaderCredentials';
-import {AuthHeaderType, isAuthHeaderType} from './AuthHeaderType';
+import {type AuthHeaderCredentials, isAuthHeaderCredentials} from './AuthHeaderCredentials';
+import {type AuthHeaderType, isAuthHeaderType} from './AuthHeaderType';
 import {AuthHeaderError} from '../AuthHeaderError';
 
-export type AuthHeaderObject = {
-	type: AuthHeaderType;
-	credentials: AuthHeaderCredentials;
+export type AuthHeaderObject<HeaderType extends AuthHeaderType = AuthHeaderType> = {
+	readonly type: HeaderType;
+	readonly credentials: AuthHeaderCredentials;
 };
 
 /**

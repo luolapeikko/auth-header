@@ -1,7 +1,18 @@
-import {assertAuthHeaderCredentials, assertAuthHeaderType, AuthHeaderCredentials, AuthHeaderObject, AuthHeaderString, AuthHeaderType} from './types';
+import {
+	assertAuthHeaderCredentials,
+	assertAuthHeaderType,
+	type AuthHeaderCredentials,
+	type AuthHeaderObject,
+	type AuthHeaderString,
+	type AuthHeaderType,
+	type StrictAuthHeaderType,
+} from './types';
 import {AuthHeaderError} from './AuthHeaderError';
 
-function buildAndValidateAuth(authHeader: unknown): AuthHeaderObject {
+function buildAndValidateAuth<T extends AuthHeaderType = AuthHeaderType>(
+	authHeader: unknown,
+	expectType?: StrictAuthHeaderType<T> | undefined,
+): AuthHeaderObject<T> {
 	if (typeof authHeader !== 'string') {
 		throw new AuthHeaderError(`${typeof authHeader} is invalid auth header type`);
 	}
@@ -11,10 +22,10 @@ function buildAndValidateAuth(authHeader: unknown): AuthHeaderObject {
 		throw new AuthHeaderError(`"${authHeader}" is invalid auth header format, missing space separator`);
 	}
 	const type = authHeader.slice(0, idx).toUpperCase();
-	assertAuthHeaderType(type);
+	assertAuthHeaderType(type, expectType);
 	const credentials = authHeader.slice(idx + 1);
 	assertAuthHeaderCredentials(credentials);
-	return {type, credentials};
+	return {type, credentials} as AuthHeaderObject<T>;
 }
 
 /**

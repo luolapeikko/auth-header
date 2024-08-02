@@ -1,5 +1,5 @@
-import {AuthHeaderType, haveAuthHeaderType, isAuthHeaderType} from './AuthHeaderType';
-import {AuthHeaderCredentials} from './AuthHeaderCredentials';
+import {type AuthHeaderType, haveAuthHeaderType, isAuthHeaderType} from './AuthHeaderType';
+import {type AuthHeaderCredentials} from './AuthHeaderCredentials';
 import {AuthHeaderError} from '../AuthHeaderError';
 
 export type AuthHeaderString = `${AuthHeaderType} ${AuthHeaderCredentials}`;

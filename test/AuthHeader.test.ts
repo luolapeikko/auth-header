@@ -8,7 +8,7 @@ const expect = chai.expect;
 const workingAuth = authHeaderTypes.map((type) => `${type.toLowerCase()} RANDOMVALUE`);
 
 describe('AuthHeader class', () => {
-	it('should return proper values', async function () {
+	it('should return proper values', function () {
 		workingAuth.forEach((auth) => {
 			const [type, credentials] = auth.split(' ');
 			const authClass = AuthHeader.fromString(auth);
