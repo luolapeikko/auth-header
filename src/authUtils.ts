@@ -27,6 +27,7 @@ function buildAndValidateAuth<T extends AuthHeaderType = AuthHeaderType>(authHea
 
 /**
  * normalized AuthString from string
+ * @since v0.0.1
  */
 export function getAuthString(authHeader: string): AuthHeaderString {
 	const {type, credentials} = buildAndValidateAuth(authHeader);
@@ -35,6 +36,7 @@ export function getAuthString(authHeader: string): AuthHeaderString {
 
 /**
  * Return AuthType from Auth header string
+ * @since v0.0.1
  */
 export function getAuthType(authHeader: string): AuthHeaderType {
 	const {type} = buildAndValidateAuth(authHeader);
@@ -43,6 +45,7 @@ export function getAuthType(authHeader: string): AuthHeaderType {
 
 /**
  * Return credentials from Auth header string
+ * @since v0.0.1
  */
 export function getAuthCredentials(authHeader: string): AuthHeaderCredentials {
 	const {credentials} = buildAndValidateAuth(authHeader);
@@ -54,6 +57,7 @@ export function getAuthCredentials(authHeader: string): AuthHeaderCredentials {
  * @param {string} authHeader - Auth header string
  * @returns {AuthHeaderObject}
  * @throws {AuthHeaderError} - If auth header is invalid
+ * @since v0.0.1
  */
 export function getAuthObject(authHeader: string): AuthHeaderObject {
 	return buildAndValidateAuth(authHeader);

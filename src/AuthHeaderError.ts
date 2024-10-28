@@ -1,3 +1,7 @@
+/**
+ * Error class for when the Authorization header is missing or invalid.
+ * @since v0.0.1
+ */
 export class AuthHeaderError extends Error {
 	constructor(message: string) {
 		super(message);

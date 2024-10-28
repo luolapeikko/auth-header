@@ -1,6 +1,10 @@
 import {type AuthHeaderCredentials, type AuthHeaderObject, type AuthHeaderString, type AuthHeaderType} from './types';
 import {getAuthObject} from './authUtils';
 
+/**
+ * AuthHeader class
+ * @since v0.0.1
+ */
 export class AuthHeader implements AuthHeaderObject {
 	public readonly type: AuthHeaderType;
 	public readonly credentials: AuthHeaderCredentials;

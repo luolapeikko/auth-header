@@ -1,8 +1,20 @@
 import {AuthHeaderError} from '../AuthHeaderError';
 
+/**
+ * Authorization header types
+ * @since v0.0.1
+ */
 export const authHeaderTypes = ['BEARER', 'BASIC', 'DIGEST', 'HOBA', 'MUTUAL', 'NEGOTIATE', 'NTLM', 'VAPID', 'AWS4-HMAC-SHA256'] as const;
+/**
+ * Authorization header type
+ * @since v0.0.1
+ */
 export type AuthHeaderType = (typeof authHeaderTypes)[number];
 
+/**
+ * Authorization header type enum
+ * @since v0.0.2
+ */
 export const AuthHeaderTypeEnum = {
 	'AWS4-HMAC-SHA256': 'AWS4-HMAC-SHA256',
 	BASIC: 'BASIC',
@@ -15,10 +27,15 @@ export const AuthHeaderTypeEnum = {
 	VAPID: 'VAPID',
 } as const satisfies Record<AuthHeaderType, AuthHeaderType>;
 
+/**
+ * StrictAuthHeaderType type
+ * @since v0.0.2
+ */
 export type StrictAuthHeaderType<T extends AuthHeaderType = AuthHeaderType> = Set<T> | T[] | T;
 
 /**
  * AuthHeaderType type guard
+ * @since v0.0.1
  */
 export function isAuthHeaderType<T extends AuthHeaderType = AuthHeaderType>(
 	authHeaderType: unknown,
@@ -42,6 +59,7 @@ export function isAuthHeaderType<T extends AuthHeaderType = AuthHeaderType>(
 
 /**
  * Check if have auth header type (case insensitive)
+ * @since v0.0.1
  */
 export function haveAuthHeaderType(authHeaderType: unknown): boolean {
 	if (typeof authHeaderType !== 'string') {
@@ -58,6 +76,7 @@ export function haveAuthHeaderType(authHeaderType: unknown): boolean {
  * assertAuthHeaderType(headerType, AuthHeaderTypeEnum.BASIC); // headerType: 'BASIC'
  * assertAuthHeaderType(headerType, [AuthHeaderTypeEnum.BASIC, AuthHeaderTypeEnum.BEARER]); // headerType: 'BASIC' | 'BEARER'
  * assertAuthHeaderType(headerType, new Set([AuthHeaderTypeEnum.BASIC, AuthHeaderTypeEnum.BEARER])); // headerType: 'BASIC' | 'BEARER'
+ * @since v0.0.1
  */
 export function assertAuthHeaderType<T extends AuthHeaderType = AuthHeaderType>(
 	value: unknown,
