@@ -2,11 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable sonarjs/no-duplicate-string */
-import 'mocha';
-import * as chai from 'chai';
 import {assertAuthHeaderType, AuthHeaderError, AuthHeaderTypeEnum, haveAuthHeaderType, isAuthHeaderType} from '../src';
-
-const expect = chai.expect;
+import {describe, expect, it} from 'vitest';
 
 describe('AuthHeaderObject', () => {
 	describe('assertAuthHeaderType', () => {

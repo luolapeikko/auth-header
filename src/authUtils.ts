@@ -9,10 +9,7 @@ import {
 } from './types';
 import {AuthHeaderError} from './AuthHeaderError';
 
-function buildAndValidateAuth<T extends AuthHeaderType = AuthHeaderType>(
-	authHeader: unknown,
-	expectType?: StrictAuthHeaderType<T> | undefined,
-): AuthHeaderObject<T> {
+function buildAndValidateAuth<T extends AuthHeaderType = AuthHeaderType>(authHeader: unknown, expectType?: StrictAuthHeaderType<T>): AuthHeaderObject<T> {
 	if (typeof authHeader !== 'string') {
 		throw new AuthHeaderError(`${typeof authHeader} is invalid auth header type`);
 	}

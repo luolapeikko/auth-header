@@ -22,12 +22,12 @@ export type StrictAuthHeaderType<T extends AuthHeaderType = AuthHeaderType> = Se
  */
 export function isAuthHeaderType<T extends AuthHeaderType = AuthHeaderType>(
 	authHeaderType: unknown,
-	expectType?: StrictAuthHeaderType<T> | undefined,
+	expectType?: StrictAuthHeaderType<T>,
 ): authHeaderType is AuthHeaderType;
 export function isAuthHeaderType<T extends AuthHeaderType = AuthHeaderType>(authHeaderType: unknown, expectType: StrictAuthHeaderType<T>): authHeaderType is T;
 export function isAuthHeaderType<T extends AuthHeaderType = AuthHeaderType>(
 	authHeaderType: unknown,
-	expectType?: StrictAuthHeaderType<T> | undefined,
+	expectType?: StrictAuthHeaderType<T>,
 ): authHeaderType is AuthHeaderType {
 	if (typeof authHeaderType !== 'string') {
 		return false;
@@ -61,12 +61,12 @@ export function haveAuthHeaderType(authHeaderType: unknown): boolean {
  */
 export function assertAuthHeaderType<T extends AuthHeaderType = AuthHeaderType>(
 	value: unknown,
-	expectType?: undefined | StrictAuthHeaderType<T>,
+	expectType?: StrictAuthHeaderType<T>,
 ): asserts value is AuthHeaderType;
 export function assertAuthHeaderType<T extends AuthHeaderType = AuthHeaderType>(value: unknown, expectType: StrictAuthHeaderType<T>): asserts value is T;
 export function assertAuthHeaderType<T extends AuthHeaderType = AuthHeaderType>(
 	value: unknown,
-	expectType?: StrictAuthHeaderType<T> | undefined,
+	expectType?: StrictAuthHeaderType<T>,
 ): asserts value is AuthHeaderType {
 	if (!isAuthHeaderType(value, expectType)) {
 		if (expectType) {

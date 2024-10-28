@@ -1,9 +1,6 @@
 /* eslint-disable sonarjs/no-duplicate-string */
-import 'mocha';
-import * as chai from 'chai';
 import {AuthHeaderError, authHeaderTypes, getAuthCredentials, getAuthString, getAuthType} from '../src';
-
-const expect = chai.expect;
+import {describe, expect, it} from 'vitest';
 
 const nullString = null as unknown as string;
 
