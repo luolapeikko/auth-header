@@ -1,6 +1,6 @@
 {
   "name": "@avanio/auth-header",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Typescript/Javascript http auth header utils",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
