@@ -25,7 +25,7 @@ export default tseslint.config(
 	jsdoc.configs['flat/recommended-typescript'],
 	prettierRecommended,
 	{
-		ignores: ['**/dist', '**/node_modules', '**/.github', '**/.nyc_output', '**/vite.config.mts', 'eslint.config.mjs'],
+		ignores: ['**/dist', '**/node_modules', '**/.github', '**/.nyc_output', '**/vite.config.mts', '**/eslint.config.mts', '*.d.ts'],
 	},
 	{
 		plugins: {

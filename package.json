@@ -58,6 +58,7 @@
     "eslint-plugin-jsdoc": "^50.6.9",
     "eslint-plugin-prettier": "^5.2.6",
     "eslint-plugin-sonarjs": "^3.0.2",
+    "jiti": "^2.4.2",
     "prettier": "^3.5.3",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3",
