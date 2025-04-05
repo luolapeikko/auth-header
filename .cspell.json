@@ -1,0 +1,32 @@
+{
+	"version": "0.2",
+	"language": "en",
+	"enableFiletypes": [
+		"markdown",
+		"typescript"
+	],
+	"ignorePaths": [
+		".cspell.json",
+		".github/workflows/**",
+		".vscode/*.json",
+		"**/*.{json,snap}",
+		"**/coverage/**",
+		"**/dist/**",
+		"**/fixtures/**",
+		"**/node_modules/**"
+	],
+	"words": [
+		"HOBA",
+		"NTLM",
+		"VVNFUk5BTUU6UEFTU1dE"
+	],
+	"dictionaries": [
+		"typescript",
+		"softwareTerms",
+		"node",
+		"en_US",
+		"npm",
+		"misc",
+		"filetypes"
+	]
+}
