@@ -7,7 +7,7 @@ import {type AuthorizationSchemeType, authorizationSchemeTypes} from '../types';
  * @template TypesArray - array of types
  * @template Res - result type
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+// biome-ignore lint/complexity/noBannedTypes: This is a utility type for merging types
 type MergeTypes<TypesArray extends any[], Res = {}> = TypesArray extends [infer Head, ...infer Rem] ? MergeTypes<Rem, Res & Head> : Res;
 type OnlyFirst<F, S> = F & {[Key in keyof Omit<S, keyof F>]?: never};
 type OneOf<TypesArray extends any[], Res = never, AllProperties = MergeTypes<TypesArray>> = TypesArray extends [infer Head, ...infer Rem]

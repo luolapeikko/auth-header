@@ -1,7 +1,7 @@
 import {Err, type IErr, type IOk, Ok} from '@luolapeikko/result-option';
 import {AuthHeaderError} from './AuthHeaderError';
 import {AbstractHeader, BasicAuthHeader, CommonAuthHeader, extractHeaderPack} from './lib';
-import {type AuthorizationSchemeType} from './types';
+import type {AuthorizationSchemeType} from './types';
 
 type CommonHeaderTypes = Exclude<AuthorizationSchemeType, 'BASIC'>;
 type AllInstanceTypes = BasicAuthHeader | CommonAuthHeader<CommonHeaderTypes>;

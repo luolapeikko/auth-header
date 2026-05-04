@@ -1,5 +1,5 @@
-import {type AuthorizationSchemeType} from '../../types';
-import {type HeaderPack} from '../utils';
+import type {AuthorizationSchemeType} from '../../types';
+import type {HeaderPack} from '../utils';
 import {AbstractHeader} from './AbstractHeader';
 
 export type CommonAuthCredentials<Brand extends `${string}`> = `${string}` & {__authHeaderType: Brand};

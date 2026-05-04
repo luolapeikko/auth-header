@@ -1,6 +1,6 @@
 import {describe, expect, it} from 'vitest';
-import {AbstractHeader, base64Encode} from './lib';
 import {AuthHeader, AuthHeaderError, isAuthHeaderInstance} from '.';
+import {AbstractHeader, base64Encode} from './lib';
 
 describe('AuthHeader', () => {
 	describe('AuthHeader class', () => {

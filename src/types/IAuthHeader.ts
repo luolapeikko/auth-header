@@ -1,4 +1,4 @@
-import {type AuthorizationSchemeType} from '.';
+import type {AuthorizationSchemeType} from '.';
 
 /**
  * Interface for auth header instance

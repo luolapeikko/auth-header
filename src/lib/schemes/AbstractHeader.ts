@@ -1,6 +1,6 @@
-import {type AuthorizationSchemeType} from '../../types';
-import {type IAuthHeader} from '../../types/IAuthHeader';
-import {type HeaderPack} from '../utils';
+import type {AuthorizationSchemeType} from '../../types';
+import type {IAuthHeader} from '../../types/IAuthHeader';
+import type {HeaderPack} from '../utils';
 
 export abstract class AbstractHeader<S extends AuthorizationSchemeType, Cred extends string = string> implements IAuthHeader<S, Cred> {
 	public abstract readonly scheme: S;
