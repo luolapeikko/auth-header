@@ -20,7 +20,6 @@
     "build": "tsdown src/index.ts --sourcemap --format cjs,esm --dts --clean",
     "prepublishOnly": "npm run build",
     "test": "vitest test --run --no-isolate --coverage",
-    "coverage": "vitest test --run --no-isolate --reporter=dot --coverage --coverage.reporter=lcov",
     "lint": "biome check",
     "validate": "tsc --noEmit"
   },
@@ -41,18 +40,19 @@
   },
   "homepage": "https://github.com/luolapeikko/auth-header#readme",
   "devDependencies": {
-    "@biomejs/biome": "^2.4.14",
-    "@luolapeikko/result-option": "^2.2.2",
+    "@biomejs/biome": "^2.5.3",
     "@tsconfig/node20": "^20.1.9",
-    "@types/node": "^24.12.2",
-    "@vitest/coverage-v8": "^4.1.5",
+    "@types/node": "^24.13.3",
+    "@vitest/coverage-v8": "^4.1.10",
     "c8": "^11.0.0",
-    "tsdown": "^0.21.10",
-    "typescript": "^6.0.3",
-    "vitest": "^4.1.5"
+    "core-result": "^0.0.2",
+    "tsdown": "^0.22.4",
+    "typescript": "^7.0.2",
+    "vite": "^8.1.4",
+    "vitest": "^4.1.10"
   },
   "peerDependencies": {
-    "@luolapeikko/result-option": ">= 1.0.0"
+    "core-result": ">= 0.0.2"
   },
-  "packageManager": "pnpm@10.33.2+sha512.a90faf6feeab71ad6c6e57f94e0fe1a12f5dcc22cd754db40ae9593eb6a3e0b6b12e3540218bb37ae083404b1f2ce6db2a4121e979829b4aff94b99f49da1cf8"
+  "packageManager": "pnpm@10.34.5+sha512.a4ee05f2f73658255bd6a89859c065a45c28a57daefae2c893a168ee2b73168c37b91e83e57ea67654ad03f03031746430e8bce38e362e042605fb8abc80192e"
 }

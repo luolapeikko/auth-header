@@ -1,4 +1,4 @@
-import {Err, type IErr, type IOk, Ok} from '@luolapeikko/result-option';
+import type {CoreResult} from 'core-result';
 import {AuthHeaderError} from './AuthHeaderError';
 import {AbstractHeader, BasicAuthHeader, CommonAuthHeader, extractHeaderPack} from './lib';
 import type {AuthorizationSchemeType} from './types';
@@ -27,27 +27,27 @@ export type AuthHeader<AuthSchemeType extends AuthorizationSchemeType = Authoriz
 export function AuthHeader<AuthSchemeType extends AuthorizationSchemeType = AuthorizationSchemeType>(
 	rawHeader: string | null | undefined,
 	allowedSchemes?: AuthSchemeType | Iterable<AuthSchemeType>,
-): IOk<AuthHeader<AuthSchemeType>> | IErr<AuthHeaderError> {
+): CoreResult<AuthHeader<AuthSchemeType>, AuthHeaderError> {
 	if (typeof rawHeader !== 'string') {
-		return Err(new AuthHeaderError(`${JSON.stringify(rawHeader)} is not a authorization header`));
+		return {success: false, error: new AuthHeaderError(`${JSON.stringify(rawHeader)} is not a authorization header`)};
 	}
 	// only run regex once to build headerPack to construct class instances
 	const packResult = extractHeaderPack(rawHeader);
-	if (packResult.isErr) {
+	if (!packResult.success) {
 		return packResult;
 	}
-	const headerPack = packResult.ok();
+	const headerPack = packResult.value;
 	// check if auth header type is allowed
 	if (allowedSchemes) {
 		const schemeList = typeof allowedSchemes === 'string' ? [allowedSchemes] : Array.from(allowedSchemes);
 		if (!schemeList.includes(headerPack.scheme as AuthSchemeType)) {
-			return Err(new AuthHeaderError(`${JSON.stringify(headerPack.scheme)} is not ["${schemeList.join('", "')}"] authorization header scheme`));
+			return {success: false, error: new AuthHeaderError(`${JSON.stringify(headerPack.scheme)} is not ["${schemeList.join('", "')}"] authorization header scheme`)};
 		}
 	}
 	// create auth header instances
 	switch (headerPack.scheme) {
 		case 'BASIC':
-			return Ok(new BasicAuthHeader(headerPack) as AuthHeader<AuthSchemeType>);
+			return {success: true, value: new BasicAuthHeader(headerPack) as AuthHeader<AuthSchemeType>};
 		case 'BEARER':
 		case 'DIGEST':
 		case 'HOBA':
@@ -56,10 +56,10 @@ export function AuthHeader<AuthSchemeType extends AuthorizationSchemeType = Auth
 		case 'NTLM':
 		case 'VAPID':
 		case 'AWS4-HMAC-SHA256':
-			return Ok(new CommonAuthHeader(headerPack) as AuthHeader<AuthSchemeType>);
+			return {success: true, value: new CommonAuthHeader(headerPack) as AuthHeader<AuthSchemeType>};
 		/* v8 ignore next 2 */
 		default:
-			return Err(new AuthHeaderError(`Unknown auth header type: ${JSON.stringify(headerPack satisfies never)}`));
+			return {success: false, error: new AuthHeaderError(`Unknown auth header type: ${JSON.stringify(headerPack satisfies never)}`)};
 	}
 }
 

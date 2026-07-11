@@ -1,4 +1,4 @@
-import {Err, type IErr, type IOk, Ok} from '@luolapeikko/result-option';
+import type {CoreResult} from 'core-result';
 import {AuthHeaderError} from '../AuthHeaderError';
 import {type AuthorizationSchemeType, authorizationSchemeTypes} from '../types';
 
@@ -58,16 +58,16 @@ export type AnyHeaderPack = OneOf<
  * @throws {AuthHeaderError} - if rawHeader is not a valid auth header
  * @since v0.0.1
  */
-export function extractHeaderPack(rawHeader: string): IOk<AnyHeaderPack> | IErr<AuthHeaderError> {
+export function extractHeaderPack(rawHeader: string): CoreResult<AnyHeaderPack, AuthHeaderError> {
 	const match = RegExp(getAuthHeaderRegex()).exec(rawHeader);
 	if (!match) {
-		return Err(new AuthHeaderError(`${JSON.stringify(rawHeader)} is not a authorization header`));
+		return {success: false, error: new AuthHeaderError(`${JSON.stringify(rawHeader)} is not a authorization header`)};
 	}
-	return Ok({
+	return {success: true, value: {
 		scheme: match[1].toUpperCase(),
 		credentials: match[2],
 		rawHeader,
-	} as AnyHeaderPack);
+	} as AnyHeaderPack};
 }
 
 /**

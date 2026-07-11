@@ -4,7 +4,11 @@ import {BasicAuthHeader} from './BasicAuthHeader';
 
 describe('AuthHeader class', () => {
 	it('should return proper values', function () {
-		const pack = extractHeaderPack(`Basic ${base64Encode('USERNAME:PASSWD')}`).unwrap();
+		const packResult = extractHeaderPack(`Basic ${base64Encode('USERNAME:PASSWD')}`);
+		if (!packResult.success) {
+			throw packResult.error;
+		}
+		const pack = packResult.value;
 		const header = new BasicAuthHeader(pack);
 		expect(header.getUsername()).to.be.eq('USERNAME');
 		expect(header.getPassword()).to.be.eq('PASSWD');
@@ -12,7 +16,11 @@ describe('AuthHeader class', () => {
 		expect(header.toJSON()).to.be.eql({scheme: 'BASIC', credentials: 'USERNAME:PASSWD'});
 	});
 	it('should give error if wrong scheme', function () {
-		const pack = extractHeaderPack(`BEARER ${base64Encode('USERNAME:PASSWD')}`).unwrap();
+		const packResult = extractHeaderPack(`BEARER ${base64Encode('USERNAME:PASSWD')}`);
+		if (!packResult.success) {
+			throw packResult.error;
+		}
+		const pack = packResult.value;
 		expect(() => new BasicAuthHeader(pack).getCredentials()).to.throw(Error, 'scheme mismatch');
 	});
 });
