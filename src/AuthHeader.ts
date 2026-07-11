@@ -41,7 +41,10 @@ export function AuthHeader<AuthSchemeType extends AuthorizationSchemeType = Auth
 	if (allowedSchemes) {
 		const schemeList = typeof allowedSchemes === 'string' ? [allowedSchemes] : Array.from(allowedSchemes);
 		if (!schemeList.includes(headerPack.scheme as AuthSchemeType)) {
-			return {success: false, error: new AuthHeaderError(`${JSON.stringify(headerPack.scheme)} is not ["${schemeList.join('", "')}"] authorization header scheme`)};
+			return {
+				success: false,
+				error: new AuthHeaderError(`${JSON.stringify(headerPack.scheme)} is not ["${schemeList.join('", "')}"] authorization header scheme`),
+			};
 		}
 	}
 	// create auth header instances

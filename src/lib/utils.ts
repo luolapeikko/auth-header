@@ -63,11 +63,14 @@ export function extractHeaderPack(rawHeader: string): CoreResult<AnyHeaderPack, 
 	if (!match) {
 		return {success: false, error: new AuthHeaderError(`${JSON.stringify(rawHeader)} is not a authorization header`)};
 	}
-	return {success: true, value: {
-		scheme: match[1].toUpperCase(),
-		credentials: match[2],
-		rawHeader,
-	} as AnyHeaderPack};
+	return {
+		success: true,
+		value: {
+			scheme: match[1].toUpperCase(),
+			credentials: match[2],
+			rawHeader,
+		} as AnyHeaderPack,
+	};
 }
 
 /**
