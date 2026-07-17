@@ -40,15 +40,15 @@
   },
   "homepage": "https://github.com/luolapeikko/auth-header#readme",
   "devDependencies": {
-    "@biomejs/biome": "^2.5.3",
+    "@biomejs/biome": "^2.5.4",
     "@tsconfig/node20": "^20.1.9",
     "@types/node": "^24.13.3",
     "@vitest/coverage-v8": "^4.1.10",
-    "c8": "^11.0.0",
+    "c8": "^12.0.0",
     "core-result": "^0.0.2",
-    "tsdown": "^0.22.4",
+    "tsdown": "^0.22.9",
     "typescript": "^7.0.2",
-    "vite": "^8.1.4",
+    "vite": "^8.1.5",
     "vitest": "^4.1.10"
   },
   "peerDependencies": {

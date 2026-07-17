@@ -10,18 +10,21 @@ export type AuthHeader<AuthSchemeType extends AuthorizationSchemeType = Authoriz
 /**
  * AuthHeader type and constructor
  * @example
- * const basicAuthHeader: AuthHeader<'BASIC'> = AuthHeader('Basic VVNFUk5BTUU6UEFTU1dE', ['BASIC']).unwrap();
- * const authHeader: AuthHeader = AuthHeader(req.header.authorization).unwrap();
- * if (authHeader.scheme === 'BASIC') {
- *	 const username = authHeader.getUsername();
- *	 const password = authHeader.getPassword();
+ * const basicResult = AuthHeader('Basic VVNFUk5BTUU6UEFTU1dE', ['BASIC']);
+ * const authResult = AuthHeader(req.header.authorization);
+ * // get username and password from basic auth header
+ * if (authResult.success && authResult.value.scheme === 'BASIC') {
+ *	 const username = authResult.value.getUsername();
+ *	 const password = authResult.value.getPassword();
  * }
- * const credentials = authHeader.getCredentials();
+ * // get credentials from any auth header type
+ * if (authResult.success) {
+ *   const credentials = authResult.value.getCredentials();
+ * }
  * @template AuthSchemeType - auth header type
  * @param {string |null | undefined} rawHeader - raw authorization header
  * @param {AuthSchemeType | Iterable<AuthSchemeType>} allowedSchemes - allowed auth header types
- * @returns {IOk<AuthHeader<AuthSchemeType>> | IErr<AuthHeaderError>} - Result with AuthHeader instance or AuthHeaderError
- * @throws {AuthHeaderError} if rawHeader is not a valid auth header or if auth header type is not allowed
+ * @returns {CoreResult<AuthHeader<AuthSchemeType>, AuthHeaderError>} - Result with AuthHeader instance or AuthHeaderError
  * @since v0.0.1
  */
 export function AuthHeader<AuthSchemeType extends AuthorizationSchemeType = AuthorizationSchemeType>(
