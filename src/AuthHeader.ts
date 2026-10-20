@@ -27,10 +27,7 @@ export type AuthHeader<AuthSchemeType extends AuthorizationSchemeType = Authoriz
  * @returns {CoreResult<AuthHeader<AuthSchemeType>, AuthHeaderError>} - Result with AuthHeader instance or AuthHeaderError
  * @since v0.0.1
  */
-export function AuthHeader(
-	rawHeader: string | null | undefined,
-	allowedSchemes?: undefined,
-): CoreResult<AllInstanceTypes, AuthHeaderError>;
+export function AuthHeader(rawHeader: string | null | undefined, allowedSchemes?: undefined): CoreResult<AllInstanceTypes, AuthHeaderError>;
 export function AuthHeader<AuthSchemeType extends AuthorizationSchemeType = AuthorizationSchemeType>(
 	rawHeader: string | null | undefined,
 	allowedSchemes: AuthSchemeType | Iterable<AuthSchemeType>,
