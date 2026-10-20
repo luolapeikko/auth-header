@@ -7,6 +7,7 @@ import type {AuthorizationSchemeType} from '.';
  * @since v0.0.1
  */
 export interface IAuthHeader<S extends AuthorizationSchemeType, Cred extends string = string> {
+	scheme: S;
 	getCredentials(): Cred;
 	toString(): string;
 	toJSON(): {scheme: S; credentials: Cred};

@@ -5,7 +5,7 @@ import type {AuthorizationSchemeType} from './types';
 
 type CommonHeaderTypes = Exclude<AuthorizationSchemeType, 'BASIC'>;
 type AllInstanceTypes = BasicAuthHeader | CommonAuthHeader<CommonHeaderTypes>;
-export type AuthHeader<AuthSchemeType extends AuthorizationSchemeType = AuthorizationSchemeType> = AllInstanceTypes & {scheme: AuthSchemeType};
+export type AuthHeader<AuthSchemeType extends AuthorizationSchemeType = AuthorizationSchemeType> = Extract<AllInstanceTypes, {scheme: AuthSchemeType}>;
 
 /**
  * AuthHeader type and constructor
