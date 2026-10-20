@@ -27,10 +27,18 @@ export type AuthHeader<AuthSchemeType extends AuthorizationSchemeType = Authoriz
  * @returns {CoreResult<AuthHeader<AuthSchemeType>, AuthHeaderError>} - Result with AuthHeader instance or AuthHeaderError
  * @since v0.0.1
  */
+export function AuthHeader(
+	rawHeader: string | null | undefined,
+	allowedSchemes?: undefined,
+): CoreResult<AllInstanceTypes, AuthHeaderError>;
+export function AuthHeader<AuthSchemeType extends AuthorizationSchemeType = AuthorizationSchemeType>(
+	rawHeader: string | null | undefined,
+	allowedSchemes: AuthSchemeType | Iterable<AuthSchemeType>,
+): CoreResult<AuthHeader<AuthSchemeType>, AuthHeaderError>;
 export function AuthHeader<AuthSchemeType extends AuthorizationSchemeType = AuthorizationSchemeType>(
 	rawHeader: string | null | undefined,
 	allowedSchemes?: AuthSchemeType | Iterable<AuthSchemeType>,
-): CoreResult<AuthHeader<AuthSchemeType>, AuthHeaderError> {
+): CoreResult<AllInstanceTypes, AuthHeaderError> {
 	if (typeof rawHeader !== 'string') {
 		return {success: false, error: new AuthHeaderError(`${JSON.stringify(rawHeader)} is not a authorization header`)};
 	}
@@ -53,7 +61,7 @@ export function AuthHeader<AuthSchemeType extends AuthorizationSchemeType = Auth
 	// create auth header instances
 	switch (headerPack.scheme) {
 		case 'BASIC':
-			return {success: true, value: new BasicAuthHeader(headerPack) as AuthHeader<AuthSchemeType>};
+			return {success: true, value: new BasicAuthHeader(headerPack)};
 		case 'BEARER':
 		case 'DIGEST':
 		case 'HOBA':
@@ -62,7 +70,7 @@ export function AuthHeader<AuthSchemeType extends AuthorizationSchemeType = Auth
 		case 'NTLM':
 		case 'VAPID':
 		case 'AWS4-HMAC-SHA256':
-			return {success: true, value: new CommonAuthHeader(headerPack) as AuthHeader<AuthSchemeType>};
+			return {success: true, value: new CommonAuthHeader(headerPack)};
 		/* v8 ignore next 2 */
 		default:
 			return {success: false, error: new AuthHeaderError(`Unknown auth header type: ${JSON.stringify(headerPack satisfies never)}`)};
