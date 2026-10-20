@@ -40,16 +40,16 @@
   },
   "homepage": "https://github.com/luolapeikko/auth-header#readme",
   "devDependencies": {
-    "@biomejs/biome": "^2.5.14",
+    "@biomejs/biome": "^2.5.15",
     "@tsconfig/node20": "^20.1.10",
-    "@types/node": "^24.19.0",
-    "@vitest/coverage-v8": "^5.0.3",
+    "@types/node": "^24.19.2",
+    "@vitest/coverage-v8": "^5.0.5",
     "c8": "^12.0.0",
     "core-result": "^0.0.3",
-    "tsdown": "^0.23.0",
+    "tsdown": "^0.23.1",
     "typescript": "^7.0.2",
-    "vite": "^8.3.1",
-    "vitest": "^5.0.3"
+    "vite": "^8.3.4",
+    "vitest": "^5.0.5"
   },
   "peerDependencies": {
     "core-result": ">= 0.0.2"
